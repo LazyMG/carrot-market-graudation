@@ -38,29 +38,72 @@ export default () => {
       setLoading(false);
     }
   };
+  const gotoLogin = () => {
+    router.push("/log-in");
+  };
   return (
-    <div>
-      <h1>Create Account</h1>
-      <form onSubmit={handleSubmit(onValid)}>
-        <div>
-          <label htmlFor="name">Name: </label>
-          <input
-            className="border"
-            type="text"
-            {...register("name", { required: "Write your name please." })}
-          />
-          <span>{errors?.name?.message}</span>
+    <div className="w-[100vw] h-[100vh]">
+      <div className="bg-[#1DA1F2] flex h-screen w-full items-center justify-around px-10 py-20">
+        <div className="h-[40rem] w-[25rem] rounded-md shadow-2xl bg-[#FCFCFC]">
+          <div className="p-4">
+            <div className="text-center font-bold text-2xl">Create Account</div>
+            <div className="mt-4">
+              <form className=" space-y-4" onSubmit={handleSubmit(onValid)}>
+                <div className="space-x-2 flex justify-center">
+                  <input
+                    className="border-b focus:border-[#1DA1F2] focus:outline-none"
+                    placeholder="Write your name please."
+                    type="text"
+                    {...register("name", {
+                      required: "Write your name please.",
+                    })}
+                  />
+                  <span>{errors?.name?.message}</span>
+                </div>
+                <div className="space-x-2 flex justify-center">
+                  <input
+                    className="border-b focus:border-[#1DA1F2] focus:outline-none"
+                    type="email"
+                    {...register("email", {
+                      required: "Write your email please.",
+                    })}
+                    placeholder="Write your email please."
+                  />
+                  <span>{errors?.email?.message}</span>
+                </div>
+                <div className="flex justify-center">
+                  <button
+                    className={
+                      "rounded-xl px-4 py-1 cursor-pointer text-white " +
+                      "bg-[#1DA1F2] hover:bg-blue-500"
+                    }
+                  >
+                    Create Account
+                  </button>
+                </div>
+              </form>
+
+              <div className="mt-4">
+                <hr />
+                <div className="mt-2 text-center text-lg">
+                  If you already have an account
+                </div>
+                <div className="mt-2 flex justify-center">
+                  <button
+                    onClick={gotoLogin}
+                    className={
+                      "rounded-xl px-4 py-1 cursor-pointer text-white " +
+                      "bg-[#1DA1F2] hover:bg-blue-500"
+                    }
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label htmlFor="email">Email: </label>
-          <input
-            type="email"
-            {...register("email", { required: "Write your email please." })}
-          />
-          <span>{errors?.email?.message}</span>
-        </div>
-        <button>Create Account</button>
-      </form>
+      </div>
     </div>
   );
 };
